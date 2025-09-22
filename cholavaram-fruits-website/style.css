@@ -42,76 +42,6 @@ header .container {
     text-decoration: none;
 }
 
-nav {
-    display: none; /* Hidden on mobile by default */
-}
-
-/* Show navigation on tablets and desktops */
-@media (min-width: 768px) {
-    nav {
-        display: block;
-    }
-    nav a {
-        margin-left: 20px;
-        text-decoration: none;
-        color: #555;
-        font-weight: 600;
-    }
-}
-
-.header-icons a {
-    text-decoration: none;
-}
-
-/* Hero Banner Styling */
-.hero-banner {
-    text-align: center;
-    padding: 40px 20px;
-    background-color: #e8f5e9;
-    border-radius: 10px;
-    margin-top: 20px;
-}
-
-.hero-banner h1 {
-    font-size: 2em;
-    color: #2c6e49;
-}
-
-.pincode-checker {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-}
-
-.pincode-checker input {
-    padding: 10px;
-    width: 60%;
-    max-width: 200px;
-    border: 1px solid #ccc;
-    border-radius: 5px 0 0 5px;
-}
-.pincode-checker input {
-    transition: border-color 0.3s ease;
-}
-
-.pincode-checker input.success {
-    border-color: #2ecc71; /* Green */
-    border-width: 2px;
-}
-
-.pincode-checker input.error {
-    border-color: #e74c3c; /* Red */
-    border-width: 2px;
-}
-.pincode-checker button {
-    padding: 10px 15px;
-    background-color: #ff8c00;
-    color: white;
-    border: none;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-}
-
 /* Product Section Styling */
 .product-section {
     padding: 40px 0;
@@ -492,10 +422,7 @@ footer {
 .radio-group {
     display: flex;
     gap: 20px;
-    margin-top: 5px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
+    margin-bottom: 15px;
 }
 
 .radio-group label {
@@ -503,7 +430,7 @@ footer {
     align-items: center;
     gap: 8px;
     cursor: pointer;
-    font-size: 1em;
+    font-weight: 500;
 }
 
 .cart-summary p {
@@ -523,44 +450,12 @@ footer {
 
 .info-box {
     background-color: #e8f5e9;
-    border: 1px solid #d4e9d7;
-    border-radius: 5px;
-    padding: 15px;
-    text-align: center;
-    color: #2c6e49;
-}
-
-.info-box p {
-    margin: 5px 0;
-    line-height: 1.5;
-}
-
-.hidden {
-    display: none;
-}
-/* --- CHECKOUT DELIVERY/PICKUP STYLES --- */
-
-.radio-group {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 15px;
-}
-
-.radio-group label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    font-weight: 500;
-}
-
-.info-box {
-    background-color: #e8f5e9;
     border: 1px solid #c8e6c9;
     border-radius: 5px;
     padding: 15px;
     font-size: 0.9em;
     color: #2e7d32;
+    text-align: left;
 }
 
 .info-box p {
@@ -568,6 +463,77 @@ footer {
     line-height: 1.5;
 }
 
-.form-group.hidden {
+.hidden {
     display: none;
+}
+
+/* --- UI MODIFICATION STYLES --- */
+
+/* Adjust product section spacing after removing banner */
+.product-section {
+    padding-top: 20px;
+}
+
+/* Style the new header icons container */
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Styles for the new pincode checker in the header */
+.pincode-checker-header {
+    display: flex;
+}
+
+.pincode-checker-header input {
+    width: 120px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    font-size: 0.9em;
+}
+
+.pincode-checker-header input.success {
+    border-color: #2ecc71; /* Green */
+    border-width: 2px;
+}
+
+.pincode-checker-header input.error {
+    border-color: #e74c3c; /* Red */
+    border-width: 2px;
+}
+
+.pincode-checker-header button {
+    padding: 8px 10px;
+    background-color: #ff8c00;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+/* Styles for the new SVG cart icon and badge */
+.cart-icon {
+    position: relative;
+    color: #333;
+    text-decoration: none;
+}
+
+.cart-icon svg {
+    vertical-align: middle;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.7em;
+    font-weight: bold;
 }
