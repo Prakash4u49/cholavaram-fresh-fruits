@@ -10,17 +10,19 @@ let products = [];
 
 // --- DOM ELEMENT REFERENCES ---
 const productGrid = document.querySelector('.product-grid');
-const cartIcon = document.getElementById('cart-icon');
 const cartCountSpan = document.getElementById('cart-count');
 const toastContainer = document.getElementById('toast-container');
 const pincodeInput = document.getElementById('pincode-input');
 const pincodeButton = document.getElementById('pincode-btn');
 
+// Cart icon reference is now the floating button
+const floatingCartBtn = document.getElementById('floating-cart-btn');
+
 // Cart Modal Elements
 const cartModal = document.getElementById('cart-modal');
 const closeCartButton = cartModal.querySelector('.close-button');
 const cartItemsContainer = document.getElementById('cart-items-container');
-const cartModalSubtotalSpan = document.getElementById('cart-modal-subtotal'); // REVISED
+const cartModalSubtotalSpan = document.getElementById('cart-modal-subtotal');
 const checkoutBtn = document.getElementById('checkout-btn');
 
 // Checkout Modal Elements
@@ -33,7 +35,6 @@ const customerAddressInput = document.getElementById('customer-address');
 const addressGroup = document.getElementById('address-group');
 const storePickupInfo = document.getElementById('store-pickup-info');
 const deliveryTypeRadios = document.querySelectorAll('input[name="delivery-type"]');
-// NEW: References for checkout summary
 const checkoutSubtotalSpan = document.getElementById('checkout-subtotal');
 const checkoutDeliveryChargeSpan = document.getElementById('checkout-delivery-charge');
 const checkoutTotalSpan = document.getElementById('checkout-total');
@@ -64,7 +65,6 @@ function calculateItemPrice(item) {
     else { return item.price * item.quantity; }
 }
 
-// --- NEW: Function to specifically update the checkout summary ---
 function updateCheckoutSummary() {
     const subtotal = cart.reduce((sum, item) => sum + calculateItemPrice(item), 0);
     const selectedDeliveryType = document.querySelector('input[name="delivery-type"]:checked').value;
@@ -120,8 +120,14 @@ function renderProducts() {
     productGrid.innerHTML = html;
 }
 
-// --- REVISED: renderCart now only handles the cart modal's display ---
 function renderCart() {
+    // Show/hide floating cart button
+    if (cart.length > 0) {
+        floatingCartBtn.classList.add('visible');
+    } else {
+        floatingCartBtn.classList.remove('visible');
+    }
+
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
         if (checkoutBtn) checkoutBtn.style.display = 'none';
@@ -189,6 +195,13 @@ function removeCartItem(productId) {
 }
 
 // --- EVENT LISTENERS ---
+if (floatingCartBtn) {
+    floatingCartBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        renderCart();
+        cartModal.style.display = 'block';
+    });
+}
 
 if (pincodeButton) {
     pincodeButton.addEventListener('click', () => {
@@ -200,19 +213,16 @@ if (pincodeButton) {
     });
 }
 
-if (cartIcon) cartIcon.addEventListener('click', () => { renderCart(); cartModal.style.display = 'block'; });
 if (closeCartButton) closeCartButton.addEventListener('click', () => { cartModal.style.display = 'none'; });
 window.addEventListener('click', (event) => { if (event.target === cartModal) cartModal.style.display = 'none'; });
 
 if (closeCheckoutButton) closeCheckoutButton.addEventListener('click', () => { checkoutModal.style.display = 'none'; });
 window.addEventListener('click', (event) => { if (event.target === checkoutModal) checkoutModal.style.display = 'none'; });
 
-// --- REVISED: Checkout button now populates the checkout summary ---
 if (checkoutBtn) {
     checkoutBtn.addEventListener('click', () => {
         cartModal.style.display = 'none';
         checkoutModal.style.display = 'block';
-        // Populate the checkout summary for the first time
         updateCheckoutSummary();
     });
 }
@@ -228,7 +238,6 @@ function handleDeliveryTypeChange() {
         storePickupInfo.classList.remove('hidden');
         customerAddressInput.required = false;
     }
-    // Update the checkout summary whenever the option changes
     updateCheckoutSummary();
 }
 deliveryTypeRadios.forEach(radio => radio.addEventListener('change', handleDeliveryTypeChange));
