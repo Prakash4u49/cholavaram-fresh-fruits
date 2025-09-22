@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cholavaram Fresh Fruits - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Cholavaram Fresh 🥭</a>
+            <nav>
+                <a href="#">Shop All</a>
+                <a href="#">Seasonal</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="header-icons">
+                <a href="#" class="cart-icon" id="cart-icon">🛒 <span id="cart-count" class="cart-count">0</span></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="hero-banner">
+                <h1>Fresh Fruits, Delivered Daily</h1>
+                <p>Sourced from local farms around Cholavaram. Order today!</p>
+                <div class="pincode-checker">
+                    <input type="text" id="pincode-input" placeholder="Enter your pincode...">
+                    <button id="pincode-btn">Check Delivery</button>
+                </div>
+            </section>
+            <section class="product-section">
+                <h2>Our Freshest Picks</h2>
+                <div class="product-grid"></div>
+            </section>
+            <section id="contact" class="contact-section">
+                <h2>Get in Touch</h2>
+                <p>Have questions? We'd love to hear from you. We deliver across Cholavaram and nearby areas.</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <strong>WhatsApp:</strong> <a href="https://wa.me/918098000107" target="_blank">+91 80980 00107</a>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Email:</strong> <a href="mailto:cholavaramfresh@gmail.com">cholavaramfresh@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Hours:</strong> Mon - Sat, 9:00 AM - 6:00 PM
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Cholavaram Fresh Fruits. All Rights Reserved.</p>
+            <div class="footer-admin-link">
+                <a href="login.html">Admin Login</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Your Cart</h2>
+            <div id="cart-items-container"></div>
+            <div class="cart-summary">
+                <strong>Subtotal: <span class="align-right">₹<span id="cart-modal-subtotal">0.00</span></span></strong>
+            </div>
+            <button id="checkout-btn" class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+    
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Delivery Details</h2>
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label>Pickup Type</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="delivery-type" value="delivery" checked> Home Delivery</label>
+                        <label><input type="radio" name="delivery-type" value="pickup"> Store Pickup</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="customer-phone">Mobile Number</label>
+                    <input type="tel" id="customer-phone" required placeholder="Enter 10-digit number to fetch details">
+                </div>
+                <div class="form-group">
+                    <label for="customer-name">Full Name</label>
+                    <input type="text" id="customer-name" required>
+                </div>
+                <div id="address-group" class="form-group">
+                    <label for="customer-address">Delivery Address</label>
+                    <textarea id="customer-address" rows="3" required></textarea>
+                </div>
+                <div id="store-pickup-info" class="form-group hidden">
+                    <label>Pickup Location</label>
+                    <div class="info-box">
+                        <p><strong>Cholavaram Fresh Fruits</strong></p>
+                        <p>No.8, Moogambikai nagar, Sembulivaram</p>
+                    </div>
+                </div>
+                <div class="cart-summary">
+                    <p>Subtotal: <span class="align-right">₹<span id="checkout-subtotal">0.00</span></span></p>
+                    <p>Delivery Charge: <span class="align-right">₹<span id="checkout-delivery-charge">0.00</span></span></p>
+                    <strong>Total: <span class="align-right">₹<span id="checkout-total">0.00</span></span></strong>
+                </div>
+                <button type="submit" class="place-order-btn">Place Order</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="toast-container"></div>
+
+    <script type="module" src="main.js" defer></script>
+</body>
+</html>

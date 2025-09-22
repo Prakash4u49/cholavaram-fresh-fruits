@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Cholavaram Fresh</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <h1 class="sidebar-logo">Admin</h1>
+            <nav class="sidebar-nav">
+                <a href="#" id="nav-dashboard" class="active">Dashboard</a>
+                <a href="#" id="nav-products">Products</a>
+                <a href="#" id="nav-orders">Orders</a>
+                <a href="#" id="nav-customers">Customers</a>
+                <a href="index.html" target="_blank">View Store</a>
+                <a href="#" id="logout-btn">Logout</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section">
+                <header class="main-header">
+                    <h2>Dashboard</h2>
+                </header>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h4>Today's Orders</h4>
+                        <p id="stats-today-orders">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Today's Earnings</h4>
+                        <p>₹<span id="stats-today-earnings">0.00</span></p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Total Products</h4>
+                        <p id="stats-total-products">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Total Customers</h4>
+                        <p id="stats-total-customers">0</p>
+                    </div>
+                </div>
+                <div class="forecast-section">
+                    <h3>Sales Forecast (Coming Soon)</h3>
+                    <p>This feature will provide sales predictions after collecting more order data.</p>
+                </div>
+            </section>
+
+            <!-- Products Section -->
+            <section id="products-section" class="hidden">
+                <header class="main-header">
+                    <h2>Products</h2>
+                </header>
+                <div class="tabs">
+                    <button class="tab-btn active" id="view-products-tab">View All Products</button>
+                    <button class="tab-btn" id="add-product-tab">Add New Product</button>
+                </div>
+                <!-- Add Product Form -->
+                <div id="add-product-view" class="hidden">
+                    <div class="form-container">
+                        <form id="product-form">
+                            <!-- Product Name -->
+                            <div class="form-group">
+                                <label for="product-name">Product Name</label>
+                                <input type="text" id="product-name" required>
+                            </div>
+                            <!-- Product Description -->
+                            <div class="form-group">
+                                <label for="product-description">Product Description</label>
+                                <textarea id="product-description" rows="4"></textarea>
+                            </div>
+                            <!-- Product Image -->
+                            <div class="form-group">
+                                <label for="product-image">Product Images (up to 4)</label>
+                                <input type="file" id="product-image" accept="image/*" multiple>
+                            </div>
+                            <!-- Pricing and Units -->
+                            <div class="form-row">
+                                 <div class="form-group">
+                                    <label for="product-actual-price">Actual Price (MRP)</label>
+                                    <input type="number" id="product-actual-price">
+                                </div>
+                                <div class="form-group">
+                                    <label for="product-price">Offer Price (₹)</label>
+                                    <input type="number" id="product-price" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="product-unit">Unit</label>
+                                    <select id="product-unit">
+                                        <option value="kg">Kilogram (kg)</option>
+                                        <option value="piece">Piece</option>
+                                        <option value="box">Box</option>
+                                        <option value="dozen">Dozen</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Action Button -->
+                            <div class="form-actions">
+                                <button type="submit" class="save-btn">Save Product</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- View Products Table -->
+                <div id="view-products-view">
+                    <div class="table-container">
+                        <table id="products-table">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Offer Price</th>
+                                    <th>Actual Price</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Product rows will be inserted here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Orders Section -->
+            <section id="orders-section" class="hidden">
+                <header class="main-header">
+                    <h2>Recent Orders</h2>
+                </header>
+                <div class="tabs">
+                    <button id="open-orders-tab" class="tab-btn active" data-color="blue">Open Orders</button>
+                    <button id="closed-orders-tab" class="tab-btn" data-color="green">Closed Orders</button>
+                </div>
+                <div id="orders-list-container">
+                    <!-- Orders will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Customers Section -->
+            <section id="customers-section" class="hidden">
+                <header class="main-header">
+                    <h2>Customers</h2>
+                </header>
+                <div class="table-container">
+                    <table id="customers-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Customer rows will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div id="edit-product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Edit Product</h2>
+            <form id="edit-product-form">
+                <!-- Form fields will be populated by JS -->
+            </form>
+        </div>
+    </div>
+    
+    <script type="module" src="admin.js" defer></script>
+</body>
+</html>
