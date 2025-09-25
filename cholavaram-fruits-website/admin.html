@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Cholavaram Fresh</title>
+    <title>Admin Panel - Shoolavaram Fresh</title>
     <link rel="stylesheet" href="admin.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,6 @@
 </head>
 <body>
     <div class="admin-container">
-        <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <h1 class="sidebar-logo">Admin</h1>
             <nav class="sidebar-nav">
@@ -24,9 +23,7 @@
             </nav>
         </aside>
 
-        <!-- Main Content Area -->
         <main class="main-content">
-            <!-- Dashboard Section -->
             <section id="dashboard-section">
                 <header class="main-header">
                     <h2>Dashboard</h2>
@@ -49,13 +46,22 @@
                         <p id="stats-total-customers">0</p>
                     </div>
                 </div>
+                <div class="settings-section">
+                    <h3>Store Settings</h3>
+                    <div class="setting-item">
+                        <label for="free-delivery-toggle">Enable Free Delivery for All Orders</label>
+                        <label class="switch">
+                            <input type="checkbox" id="free-delivery-toggle">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
                 <div class="forecast-section">
                     <h3>Sales Forecast (Coming Soon)</h3>
                     <p>This feature will provide sales predictions after collecting more order data.</p>
                 </div>
             </section>
 
-            <!-- Products Section -->
             <section id="products-section" class="hidden">
                 <header class="main-header">
                     <h2>Products</h2>
@@ -64,26 +70,21 @@
                     <button class="tab-btn active" id="view-products-tab">View All Products</button>
                     <button class="tab-btn" id="add-product-tab">Add New Product</button>
                 </div>
-                <!-- Add Product Form -->
                 <div id="add-product-view" class="hidden">
                     <div class="form-container">
                         <form id="product-form">
-                            <!-- Product Name -->
                             <div class="form-group">
                                 <label for="product-name">Product Name</label>
                                 <input type="text" id="product-name" required>
                             </div>
-                            <!-- Product Description -->
                             <div class="form-group">
                                 <label for="product-description">Product Description</label>
                                 <textarea id="product-description" rows="4"></textarea>
                             </div>
-                            <!-- Product Image -->
                             <div class="form-group">
                                 <label for="product-image">Product Images (up to 4)</label>
                                 <input type="file" id="product-image" accept="image/*" multiple>
                             </div>
-                            <!-- Pricing and Units -->
                             <div class="form-row">
                                  <div class="form-group">
                                     <label for="product-actual-price">Actual Price (MRP)</label>
@@ -103,14 +104,16 @@
                                     </select>
                                 </div>
                             </div>
-                            <!-- Action Button -->
+                            <div class="form-group-checkbox">
+                                <input type="checkbox" id="product-out-of-stock">
+                                <label for="product-out-of-stock">Mark as Out of Stock</label>
+                            </div>
                             <div class="form-actions">
                                 <button type="submit" class="save-btn">Save Product</button>
                             </div>
                         </form>
                     </div>
                 </div>
-                <!-- View Products Table -->
                 <div id="view-products-view">
                     <div class="table-container">
                         <table id="products-table">
@@ -120,62 +123,28 @@
                                     <th>Name</th>
                                     <th>Offer Price</th>
                                     <th>Actual Price</th>
-                                    <th>Actions</th>
+                                    <th>Status</th> <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <!-- Product rows will be inserted here -->
-                            </tbody>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
             </section>
 
-            <!-- Orders Section -->
             <section id="orders-section" class="hidden">
-                <header class="main-header">
-                    <h2>Recent Orders</h2>
-                </header>
-                <div class="tabs">
-                    <button id="open-orders-tab" class="tab-btn active" data-color="blue">Open Orders</button>
-                    <button id="closed-orders-tab" class="tab-btn" data-color="green">Closed Orders</button>
-                </div>
-                <div id="orders-list-container">
-                    <!-- Orders will be loaded here -->
-                </div>
-            </section>
+                 </section>
 
-            <!-- Customers Section -->
             <section id="customers-section" class="hidden">
-                <header class="main-header">
-                    <h2>Customers</h2>
-                </header>
-                <div class="table-container">
-                    <table id="customers-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Customer rows will be inserted here -->
-                        </tbody>
-                    </table>
-                </div>
-            </section>
+                </section>
         </main>
     </div>
 
-    <!-- Edit Product Modal -->
     <div id="edit-product-modal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
             <h2>Edit Product</h2>
-            <form id="edit-product-form">
-                <!-- Form fields will be populated by JS -->
-            </form>
+            <form id="edit-product-form"></form>
         </div>
     </div>
     
